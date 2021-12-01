@@ -9,13 +9,14 @@
 require('mysql.php');
 if (isset($_REQUEST['username'])){
     $username = stripslashes($_REQUEST['username']);
-    $username = mysqli_real_escape_string($con,$username);
+    $username = mysqli_real_escape_string($mysqli,$username);
 	$email = stripslashes($_REQUEST['email']);
-	$email = mysqli_real_escape_string($con,$email);
-    $unic_id = rand(100000,9999999);;
+	$email = mysqli_real_escape_string($mysqli,$email);
+    $unic_id = rand(100000,9999999);
+    $unic_id = mysqli_real_escape_string($mysqli,$unic_id);
         $query = "INSERT into `santas` (username, email, unic_id)
 VALUES ('$username', '$email', '$unic_id')";
-        $result = mysqli_query($con,$query);
+        $result = mysqli_query($mysqli,$query);
         if($result){
             echo ("Привет друг, ты попал на интересную игру!");
         }
