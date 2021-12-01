@@ -11,12 +11,13 @@ if (isset($_REQUEST['username'])){
     $username = stripslashes($_REQUEST['username']);
     $username = mysqli_real_escape_string($con,$username);
 	$email = stripslashes($_REQUEST['email']);
-	$email = mysqli_real_escape_string($con,$password);
-        $query = "INSERT into `users` (username, email)
-VALUES ('$username', '".md5($email)."')";
+	$email = mysqli_real_escape_string($con,$email);
+    $unic_id = rand(100000,9999999);;
+        $query = "INSERT into `santas` (username, email, unic_id)
+VALUES ('$username', '$email', '$unic_id')";
         $result = mysqli_query($con,$query);
         if($result){
-            include ('secret-santa.php');
+            echo ("Привет друг, ты попал на интересную игру!");
         }
     }else{
 ?>
